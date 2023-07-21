@@ -39,7 +39,7 @@ AppAsset::register($this);
             echo Nav::widget([
                     'options'=>['class'=>'navbar-nav'],
                     'items' => [
-                            ['label'=>'Для администратора','url'=>['/admin'],
+                            ['label'=>'Для администратора','url'=>['/admin/login'],
                                 'options'=>[
                                     'class'=>'btn btn-primary'
                                 ]

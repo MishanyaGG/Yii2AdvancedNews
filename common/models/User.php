@@ -18,6 +18,21 @@ use app\models\UserInformation;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $surname;
+    public $name;
+    public $patronymic;
+    public $phone_number;
+    public $email;
+    public $login;
+    public $password;
+
+    public function rules()
+    {
+        return [
+          [['surname','name','patronymic','phone_number','email','login','password'],'required']
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */

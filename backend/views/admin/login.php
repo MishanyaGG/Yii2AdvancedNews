@@ -23,6 +23,7 @@ $this->title = 'Вход';
 
             <div class="form-group">
                 <?= Html::submitButton('Вход', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                <?= Html::a('Регистрация','create',['class'=>'btn btn-secondary']) ?>
             </div>
 
         <?php ActiveForm::end(); ?>
