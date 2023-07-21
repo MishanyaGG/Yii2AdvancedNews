@@ -41,10 +41,3 @@ $this->params['breadcrumbs'][] = $this->title;
         'summary'=>''
 ]) ?>
 </div>
-<script>
-    // var fragment = document.getElementById('convertedInformation');
-    //
-    // var information = document.getElementById('information');
-    //
-    // information.innerHTML = information.innerText;
-</script>

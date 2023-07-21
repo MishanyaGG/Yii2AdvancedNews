@@ -13,7 +13,6 @@ $modelCategories = News::findOne($model->id);
         <h3 class="fs-2"><?= Html::encode($model->header) ?></h3>
         <p>Дата подачи <?= Html::encode($model->date) ?></p>
 
-        <div id="information" on="hi()" style="width: 50%"><?= Html::encode($model->information) ?></div>
         <?= Html::a('Подробнее',['news/view','id'=>$model->id],['class'=>'btn btn-primary']) ?>
 
         <?php if(!Yii::$app->user->isGuest) { ?>
