@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2158b2fbf2c2f964ea5d76c3986297c9",
+    "content-hash": "54ed4ee5bbf9333a8ef30bcb7e17a239",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -364,6 +364,55 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.16.0"
             },
             "time": "2022-09-18T07:06:19+00:00"
+        },
+        {
+            "name": "franciscomaya/yii2-sceditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/franciscomaya/yii2-sceditor.git",
+                "reference": "949328707498004a9fd3b77f595d2d5af2da074f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/franciscomaya/yii2-sceditor/zipball/949328707498004a9fd3b77f595d2d5af2da074f",
+                "reference": "949328707498004a9fd3b77f595d2d5af2da074f",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "franciscomaya\\sceditor\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Francisco Maya Sarasty",
+                    "email": "sarasty@gmail.com"
+                }
+            ],
+            "description": "SCEditor, a lightweight WYSIWYG BBCode & HTML editor extension for Yii 2.0 Framework",
+            "keywords": [
+                "bbcode",
+                "extension",
+                "sceditor",
+                "xhtml",
+                "yii",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/franciscomaya/yii2-sceditor/issues",
+                "source": "https://github.com/franciscomaya/yii2-sceditor/tree/master"
+            },
+            "time": "2015-09-02T21:27:48+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5594,7 +5643,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "franciscomaya/yii2-sceditor": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

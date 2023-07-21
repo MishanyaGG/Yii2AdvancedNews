@@ -1165,6 +1165,58 @@
             "install-path": "../fakerphp/faker"
         },
         {
+            "name": "franciscomaya/yii2-sceditor",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/franciscomaya/yii2-sceditor.git",
+                "reference": "949328707498004a9fd3b77f595d2d5af2da074f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/franciscomaya/yii2-sceditor/zipball/949328707498004a9fd3b77f595d2d5af2da074f",
+                "reference": "949328707498004a9fd3b77f595d2d5af2da074f",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "time": "2015-09-02T21:27:48+00:00",
+            "default-branch": true,
+            "type": "yii2-extension",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "franciscomaya\\sceditor\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Francisco Maya Sarasty",
+                    "email": "sarasty@gmail.com"
+                }
+            ],
+            "description": "SCEditor, a lightweight WYSIWYG BBCode & HTML editor extension for Yii 2.0 Framework",
+            "keywords": [
+                "bbcode",
+                "extension",
+                "sceditor",
+                "xhtml",
+                "yii",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/franciscomaya/yii2-sceditor/issues",
+                "source": "https://github.com/franciscomaya/yii2-sceditor/tree/master"
+            },
+            "install-path": "../franciscomaya/yii2-sceditor"
+        },
+        {
             "name": "guzzlehttp/psr7",
             "version": "2.5.0",
             "version_normalized": "2.5.0.0",

@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'yiisoft/yii2-app-advanced',
-        'pretty_version' => '2.0.48',
-        'version' => '2.0.48.0',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'reference' => NULL,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
@@ -204,6 +204,17 @@
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'franciscomaya/yii2-sceditor' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '949328707498004a9fd3b77f595d2d5af2da074f',
+            'type' => 'yii2-extension',
+            'install_path' => __DIR__ . '/../franciscomaya/yii2-sceditor',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
         ),
         'guzzlehttp/psr7' => array(
             'pretty_version' => '2.5.0',
@@ -767,8 +778,8 @@
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-app-advanced' => array(
-            'pretty_version' => '2.0.48',
-            'version' => '2.0.48.0',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'reference' => NULL,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',

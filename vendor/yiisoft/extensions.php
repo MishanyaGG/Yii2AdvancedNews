@@ -49,4 +49,13 @@ return array (
       '@yii/symfonymailer' => $vendorDir . '/yiisoft/yii2-symfonymailer/src',
     ),
   ),
+  'franciscomaya/yii2-sceditor' => 
+  array (
+    'name' => 'franciscomaya/yii2-sceditor',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@franciscomaya/sceditor' => $vendorDir . '/franciscomaya/yii2-sceditor',
+    ),
+  ),
 );
