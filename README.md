@@ -16,3 +16,6 @@
 2) Произвести миграцию с помощью команды ``php yii migrate``
 3) Запуск проекта `frontend` с помощью команды ``php yii serve --docroot="frontend/web" <-p="порт по необходимости">``
 4) Запуск проекта `backend` с помощью команды ``php yii serve --docroot="backend/web" <-p="порт по необходимости">``
+
+P.S.\
+Написав в frontend url /language/ru, /language/en, /language/sp, /language/de будет выводится записи на языке, которые написаны в url (пока что реализовано 4 языка) 
