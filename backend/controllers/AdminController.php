@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
 use common\models\LoginForm;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 /**
  * AdminController implements the CRUD actions for Users model.
@@ -177,6 +178,7 @@ class AdminController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tr = new GoogleTranslate();
 
         if ($this->request->isPost){
             $listPost = $this->request->post();
@@ -189,11 +191,13 @@ class AdminController extends Controller
             $model->login = $listPost['login'];
             $model->password = $listPost['password'];
 
-
             try {
                 $user_information = Yii::$app->db->createCommand(
                 "update user_information
-                        set information_in_ru =  '".$listPost['user_information']."'
+                        set information_in_ru =  '".$listPost['user_information']."',
+                            information_in_de = '".$tr->setSource('ru')->setTarget('de')->translate($listPost['user_information'])."',
+                            information_in_en = '".$tr->setSource('ru')->setTarget('en')->translate($listPost['user_information'])."',
+                            information_in_sp = '".$tr->setSource('ru')->setTarget('sp')->translate($listPost['user_information'])."'
                         where id_user = ".$id.";")
                 ->query();
 

@@ -21,7 +21,8 @@
         "franciscomaya/yii2-sceditor": "dev-master",
         "php-translation/translator": "^1.2",
         "symfony/http-client": "^6.3",
-        "guzzlehttp/psr7": "^2.5"
+        "guzzlehttp/psr7": "^2.5",
+        "stichoza/google-translate-php": "^5.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
