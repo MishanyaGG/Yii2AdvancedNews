@@ -2,15 +2,20 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Users;
 
 /** @var yii\web\View $this */
 /** @var app\models\Users $model */
 /** @var yii\widgets\ActiveForm $form */
+
+$user_information = Users::findOne($model->id);
+
+$user_information = $user_information->getUserInformations()->asArray()->all();
 ?>
 
 <div class="users-form">
 
-    <?= Html::beginForm(['update','id'=>$model->id]) ?>
+    <?= Html::beginForm(['update','id'=>$model->id],'post') ?>
     <div class="form-group">
         <label for="surname">Фамилия</label>
         <input class="form-control" id="surname" name="surname" type="text" value="<?= $model->surname ?>">
@@ -53,6 +58,7 @@ use yii\widgets\ActiveForm;
         <?= \franciscomaya\sceditor\SCEditor::widget([
                 'name'=>'user_information',
                 'id'=>'user_information',
+                'value'=>$user_information[0]['information_in_ru'],
                 'options' => [
                         'style'=>'width: 100%; height: 100%',
                     'rows'=>10

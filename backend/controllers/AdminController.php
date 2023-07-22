@@ -2,9 +2,11 @@
 
 namespace backend\controllers;
 
+use app\models\UserInformation;
 use app\models\Users;
 use common\models\User;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -114,10 +116,14 @@ class AdminController extends Controller
     public function actionCreate()
     {
         $model = new Users();
+        $user_information = new UserInformation();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+
+                $user_information->id_user = $model->id; $user_information->save();
+
+                return $this->redirect('login');
             }
         } else {
             $model->loadDefaultValues();
@@ -139,9 +145,37 @@ class AdminController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost){
+            $listPost = $this->request->post();
+
+            $model->surname = $listPost['surname'];
+            $model->name = $listPost['name'];
+            $model->patronymic = $listPost['patronimyc'];
+            $model->phone_number = $listPost['phone_number'];
+            $model->email = $listPost['email'];
+            $model->login = $listPost['login'];
+            $model->password = $listPost['password'];
+
+
+            try {
+                $user_information = Yii::$app->db->createCommand(
+                "update user_information
+                        set information_in_ru =  '".$listPost['user_information']."'
+                        where id_user = ".$id.";")
+                ->query();
+
+            } catch (\Exception $exception){
+                var_dump($exception); die();
+            }
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
+//        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
 
         return $this->render('update', [
             'model' => $model,
