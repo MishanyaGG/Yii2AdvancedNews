@@ -119,6 +119,12 @@ class AdminController extends Controller
         $user_information = new UserInformation();
 
         if ($this->request->isPost) {
+            $post = $this->request->post();
+
+            if(count(User::find()->where('login = "'.$post['Users']['login'].'"')->asArray()->all()) == 1){
+                return $this->redirect('error');
+            }
+
             if ($model->load($this->request->post()) && $model->save()) {
 
                 $user_information->id_user = $model->id; $user_information->save();
@@ -130,6 +136,33 @@ class AdminController extends Controller
         }
 
         return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionError(){
+        $model = new Users();
+        $user_information = new UserInformation();
+
+        if ($this->request->isPost) {
+            $post = $this->request->post();
+
+            if(count(User::find()->where('login = "'.$post['Users']['login'].'"')->asArray()->all()) == 1){
+
+                return $this->redirect('error');
+            }
+
+            if ($model->load($this->request->post()) && $model->save()) {
+
+                $user_information->id_user = $model->id; $user_information->save();
+
+                return $this->redirect('login');
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('error', [
             'model' => $model,
         ]);
     }

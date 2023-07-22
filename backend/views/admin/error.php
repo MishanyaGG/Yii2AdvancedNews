@@ -11,6 +11,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="users-create">
 
+    <div class="alert alert-danger">
+        Такой логин существует
+    </div>
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_loginForm', [
