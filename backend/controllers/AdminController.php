@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use app\models\Users;
+use common\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

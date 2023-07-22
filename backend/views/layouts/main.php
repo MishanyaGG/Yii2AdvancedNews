@@ -58,12 +58,7 @@ AppAsset::register($this);
                                     'style'=>'color: white;margin-right: 10px; padding: 0'
                                 ]
                             ],
-                            Html::beginForm(['/admin/logout']).Html::submitButton(
-                                    'Выход('.Yii::$app->user->identity->login . ')',
-                                ['class'=>'btn btn-danger', 'style'=>'padding: 10px']
-
-                            ).
-                            Html::endForm()
+                            Html::a('Профиль',['admin/view','id'=>Yii::$app->user->identity->id],['class'=>'btn btn-info']),
                     ]
             ]);
             NavBar::end();

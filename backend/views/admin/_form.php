@@ -10,26 +10,58 @@ use yii\widgets\ActiveForm;
 
 <div class="users-form">
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-
+    <?= Html::beginForm(['update','id'=>$model->id]) ?>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <label for="surname">Фамилия</label>
+        <input class="form-control" id="surname" name="surname" type="text" value="<?= $model->surname ?>">
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="form-group">
+        <label for="name">Имя</label>
+        <input class="form-control" id="name" name="name" type="text" value="<?= $model->name ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="patronimyc">Отчество</label>
+        <input class="form-control" id="patronimyc" name="patronimyc" type="text" value="<?= $model->patronymic ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Номер телефона</label>
+        <input class="form-control" id="phone_number" name="phone_number" type="text" value="<?= $model->phone_number ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" id="email" name="email" type="email" value="<?= $model->email ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="login">Логин</label>
+        <input class="form-control" id="login" name="login" type="text" value="<?= $model->login ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input class="form-control" id="password" name="password" type="text" value="<?= $model->password ?>">
+    </div>
+
+    <div class="form-group">
+
+        <label for="user_information">Информация о пользователе</label>
+
+        <?= \franciscomaya\sceditor\SCEditor::widget([
+                'name'=>'user_information',
+                'id'=>'user_information',
+                'options' => [
+                        'style'=>'width: 100%; height: 100%',
+                    'rows'=>10
+                ]
+        ]) ?>
+
+    </div>
+
+    <?= Html::submitButton('Изменить',['class'=>'btn btn-success','style'=>'margin-top: 10px']) ?>
+    <? Html::endForm() ?>
 
 </div>
