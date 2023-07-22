@@ -7,32 +7,44 @@ use app\models\Users;
 
 class LanguageController extends \yii\web\Controller
 {
+    /**
+     * Страница на Русском
+     * @return string
+     */
     public function actionRu(){
-        $users = Users::find()->asArray()->all();
         return $this->render('ru',[
             'users'=>Users::find()->asArray()->all(),
             'user_information'=>UserInformation::find()->asArray()->all()
         ]);
     }
 
+    /**
+     * Страница на Испанском
+     * @return string
+     */
     public function actionSp(){
-        $users = Users::find()->asArray()->all();
         return $this->render('sp',[
             'users'=>Users::find()->asArray()->all(),
             'user_information'=>UserInformation::find()->asArray()->all()
         ]);
     }
 
+    /**
+     * Страница на Английском
+     * @return string
+     */
     public function actionEn(){
-        $users = Users::find()->asArray()->all();
         return $this->render('en',[
             'users'=>Users::find()->asArray()->all(),
             'user_information'=>UserInformation::find()->asArray()->all()
         ]);
     }
 
+    /**
+     * Страница на Немецком
+     * @return string
+     */
     public function actionDe(){
-        $users = Users::find()->asArray()->all();
         return $this->render('de',[
             'users'=>Users::find()->asArray()->all(),
             'user_information'=>UserInformation::find()->asArray()->all()

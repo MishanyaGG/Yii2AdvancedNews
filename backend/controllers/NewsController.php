@@ -59,6 +59,8 @@ class NewsController extends Controller
     {
         $model = new News();
 
+
+        // Заполняю дату создания новости
         $model->date = date('Y-m-d');
 
         if ($this->request->isPost) {

@@ -116,16 +116,20 @@ class AdminController extends Controller
      */
     public function actionCreate()
     {
+        // Создаём экземпляры классов
         $model = new Users();
         $user_information = new UserInformation();
 
+        // Если POST запрос
         if ($this->request->isPost) {
             $post = $this->request->post();
 
+            // Проверка на существующий логин
             if(count(User::find()->where('login = "'.$post['Users']['login'].'"')->asArray()->all()) == 1){
                 return $this->redirect('error');
             }
 
+            // Сохранение в моедль
             if ($model->load($this->request->post()) && $model->save()) {
 
                 $user_information->id_user = $model->id; $user_information->save();
@@ -141,13 +145,21 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+     * Если логин существует
+     * @return string|\yii\web\Response
+     */
     public function actionError(){
+
+        //Создаём экземпляры классов
         $model = new Users();
         $user_information = new UserInformation();
 
+        // Если POST запрос
         if ($this->request->isPost) {
             $post = $this->request->post();
 
+            // Если логин существует
             if(count(User::find()->where('login = "'.$post['Users']['login'].'"')->asArray()->all()) == 1){
 
                 return $this->redirect('error');
@@ -183,6 +195,7 @@ class AdminController extends Controller
         if ($this->request->isPost){
             $listPost = $this->request->post();
 
+            // Делаем замещение данных из бд в данные из формы
             $model->surname = $listPost['surname'];
             $model->name = $listPost['name'];
             $model->patronymic = $listPost['patronimyc'];
@@ -191,6 +204,7 @@ class AdminController extends Controller
             $model->login = $listPost['login'];
             $model->password = $listPost['password'];
 
+            // Попытка сделать запрос на доабвление текста о пользователе в таблицу "user_information"
             try {
                 $user_information = Yii::$app->db->createCommand(
                 "update user_information
