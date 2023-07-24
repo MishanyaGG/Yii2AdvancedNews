@@ -19,9 +19,6 @@ class m230721_150123_create_user_information_table extends Migration
             'id' => $this->primaryKey(),
             'id_user' => $this->integer()->notNull(),
             'information_in_ru' => $this->text(),
-            'information_in_en' => $this->text(),
-            'information_in_de' => $this->text(),
-            'information_in_sp' => $this->text(),
         ]);
 
         // creates index for column `id_user`

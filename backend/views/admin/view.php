@@ -93,9 +93,6 @@ $user_information = $user_information->getUserInformations()->asArray()->all();
     }
 
     function onchageSelectLanguage(el){
-
-
-
         for (var i = 0; i< arr.length; i++){
 
             var text = document.getElementById(arr[i]);
@@ -111,6 +108,4 @@ $user_information = $user_information->getUserInformations()->asArray()->all();
         div_language.style.display = '';
 
    }
-
-
 </script>

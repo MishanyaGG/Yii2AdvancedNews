@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Language;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -20,6 +21,9 @@ class NewsController extends Controller
      */
     public function actionIndex()
     {
+        $language = new Language();
+        $language->createRecord();
+
         $dataProvider = new ActiveDataProvider([
             'query' => News::find(),
             'pagination' => [

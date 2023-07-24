@@ -207,7 +207,6 @@ class AdminController extends Controller
 
             // Попытка сделать запрос на доабвление текста о пользователе в таблицу "user_information"
             try {
-                // 73
 
                 foreach (Language::find()->asArray()->all() as $lg){
                     try {
@@ -220,7 +219,6 @@ class AdminController extends Controller
                                 ->query();
                     } catch (\Exception $exception){
                         continue;
-                        //                        var_dump($exception);
                     }
                 }
 
@@ -232,10 +230,6 @@ class AdminController extends Controller
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
-//        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
 
         return $this->render('update', [
             'model' => $model,

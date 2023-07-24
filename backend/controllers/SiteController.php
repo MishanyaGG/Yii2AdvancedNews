@@ -8,6 +8,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use app\models\Language;
 
 /**
  * Site controller
