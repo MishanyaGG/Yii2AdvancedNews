@@ -13,7 +13,7 @@ use common\models\User;
  * @property string|null $information_in_ru
  * @property string|null $information_in_en
  * @property string|null $information_in_de
- * @property string|null $information_in_sp
+ * @property string|null $information_in_es
  *
  * @property Users $user
  */
@@ -35,7 +35,7 @@ class UserInformation extends \yii\db\ActiveRecord
         return [
             [['id_user'], 'required'],
             [['id_user'], 'integer'],
-            [['information_in_ru', 'information_in_en', 'information_in_de', 'information_in_sp'], 'string'],
+            [['information_in_ru', 'information_in_en', 'information_in_de', 'information_in_es'], 'string'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
@@ -51,7 +51,7 @@ class UserInformation extends \yii\db\ActiveRecord
             'information_in_ru' => 'Information In Ru',
             'information_in_en' => 'Information In En',
             'information_in_de' => 'Information In De',
-            'information_in_sp' => 'Information In Sp',
+            'information_in_sp' => 'Information In Es',
         ];
     }
 

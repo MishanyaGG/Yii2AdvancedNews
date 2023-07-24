@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use app\models\Language;
 use app\models\UserInformation;
 use app\models\Users;
 use common\models\User;
@@ -206,14 +207,22 @@ class AdminController extends Controller
 
             // Попытка сделать запрос на доабвление текста о пользователе в таблицу "user_information"
             try {
-                $user_information = Yii::$app->db->createCommand(
-                "update user_information
-                        set information_in_ru =  '".$listPost['user_information']."',
-                            information_in_de = '".$tr->setSource('ru')->setTarget('de')->translate($listPost['user_information'])."',
-                            information_in_en = '".$tr->setSource('ru')->setTarget('en')->translate($listPost['user_information'])."',
-                            information_in_sp = '".$tr->setSource('ru')->setTarget('sp')->translate($listPost['user_information'])."'
-                        where id_user = ".$id.";")
-                ->query();
+                // 73
+
+                foreach (Language::find()->asArray()->all() as $lg){
+                    try {
+
+                        var_dump('information_in_'.$lg['reduction']);
+                            $query = Yii::$app->db->createCommand(
+                                "update user_information
+                                        set information_in_".$lg['reduction']." = '".$tr->setSource('ru')->setTarget($lg['reduction'])->translate($listPost['user_information'])."'
+                                        where id_user = ".$id.";")
+                                ->query();
+                    } catch (\Exception $exception){
+                        continue;
+                        //                        var_dump($exception);
+                    }
+                }
 
             } catch (\Exception $exception){
                 var_dump($exception); die();

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\Users;
+use app\models\Language;
 
 /** @var yii\web\View $this */
 /** @var app\models\Users $model */
@@ -11,6 +12,8 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+$language = Language::find()->all();
 
 $user_information = new Users();
 
@@ -45,64 +48,69 @@ $user_information = $user_information->getUserInformations()->asArray()->all();
         ],
     ]) ?>
 
-    <select class="form-control" onchange="onchangeSelectLanguage(this)" id="select_language">
-        <option selected>Русский</option>
-        <option>Испанский</option>
-        <option>Английский</option>
-        <option>Немецкий</option>
-    </select>
+    <label for="select_language">Язык, на котором написана информация</label>
+    <div style="display: flex">
+            <select style="width: 30%" onchange="onchageSelectLanguage(this)" class="form-control"  id="select_language">
+                <option disabled selected>Язык, на котором будет написана информация</option>
+                <?php
+                    foreach ($language as $lg) {
+                        if(isset($user_information[0]['information_in_'.$lg['reduction']])){
+                            ?>
+                            <option value="<?=$lg['reduction'] ?>"><?= $lg['language'] ?></option> <?php
+                        }
+                    }
+                    ?>
+            </select>
+        <?= Html::a('Добавить новый язык','../language/create',['class'=>'btn btn-success','style'=>'margin-left: 10px']) ?>
+    </div>
 
     <h2 align="center">Краткая информация о пользователе</h2>
 
-    <div id="ru"><?= $user_information[0]['information_in_ru'] ?></div>
-    <div id="sp"><?= $user_information[0]['information_in_sp'] ?></div>
-    <div id="en"><?= $user_information[0]['information_in_en'] ?></div>
-    <div id="de"><?= $user_information[0]['information_in_de'] ?></div>
+
+
+    <?php
+    foreach ($language as $lg) {
+        if(isset($user_information[0]['information_in_'.$lg['reduction']])){
+            ?>
+            <div style="display: none" id="<?= $lg['reduction'] ?>"><?= $user_information[0]['information_in_'.$lg['reduction']] ?></div>
+            <?php
+        }
+    }
+    ?>
 
 </div>
 
 <script>
-    var select_language = document.getElementById('select_language');
+    var selectLanguage = document.getElementById('select_language');
+        languageChildern = selectLanguage.children;
+        languageLen = languageChildern.length;
 
-    var div_ru = document.getElementById('ru');
-    var div_sp = document.getElementById('sp');
-    var div_en = document.getElementById('en');
-    var div_de = document.getElementById('de');
+    var arr = [];
 
-    div_en.style.display = 'none';
-    div_sp.style.display = 'none';
-    div_de.style.display = 'none';
-
-    function onchangeSelectLanguage(el){
-        var text = el.options[el.selectedIndex].text;
-
-        if (text == 'Английский'){
-            div_en.style.display = '';
-            div_sp.style.display = 'none';
-            div_de.style.display = 'none';
-            div_ru.style.display = 'none';
-        }
-
-        if (text == 'Русский'){
-            div_en.style.display = 'none';
-            div_sp.style.display = 'none';
-            div_de.style.display = 'none';
-            div_ru.style.display = '';
-        }
-
-        if (text == 'Немецкий'){
-            div_en.style.display = 'none';
-            div_sp.style.display = 'none';
-            div_de.style.display = '';
-            div_ru.style.display = 'none';
-        }
-
-        if (text == 'Испанский'){
-            div_en.style.display = 'none';
-            div_sp.style.display = '';
-            div_de.style.display = 'none';
-            div_ru.style.display = 'none';
-        }
-
+    for (var i = 1; i < languageLen; i++) {
+        var val = languageChildern[i].value;
+        arr = arr.concat(val);
     }
+
+    function onchageSelectLanguage(el){
+
+
+
+        for (var i = 0; i< arr.length; i++){
+
+            var text = document.getElementById(arr[i]);
+
+            text.style.display = 'none';
+
+        }
+
+        var text = el.options[el.selectedIndex].value;
+
+        var div_language = document.getElementById(text);
+
+        div_language.style.display = '';
+
+   }
+
+
 </script>
