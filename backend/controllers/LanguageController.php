@@ -12,13 +12,20 @@ class LanguageController extends \yii\web\Controller
     public function actionCreate()
     {
         $tr = new GoogleTranslate();
+        $user_information = UserInformation::find()->all();
         if ($this->request->isPost){
             $post = $this->request->post();
 
-           $user_information = Yii::$app->db->createCommand(
+            try {
+                $user_information = Yii::$app->db->createCommand(
                 "alter table user_information
                     add information_in_".$post['language']." text")
                     ->query();
+            } catch (\Exception $exception){
+                return $this->render('error',[
+                    'language'=>Language::find()
+                ]);
+            }
 
                 $user_information = UserInformation::find()->asArray()->all();
 
@@ -26,17 +33,12 @@ class LanguageController extends \yii\web\Controller
                     $users = UserInformation::findOne($information['id']);
 
                     if ($users->information_in_ru != null){
-                        // Поле в бд
-                        $string_field = 'information_in_'.$post['language'];
 
-                        // Перевод текста
-                        $translation = $tr->setSource('ru')->setTarget($post['language'])->translate($users->information_in_ru);
-
-                        // Запись в экземпляр модели
-                        $users->$string_field = $translation;
-
-                        // Сохранение
-                        $users->save();
+                        Yii::$app->db->createCommand(
+                            "update user_information
+                                set information_in_".$post['language']." = '".$tr->setSource('ru')->setTarget($post['language'])->translate($users->information_in_ru)."'
+                                where id_user = ".$information['id_user']."; "
+                        )->query();
                     }
                 }
 
