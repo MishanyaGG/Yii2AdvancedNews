@@ -190,9 +190,11 @@ class AdminController extends Controller
      */
     public function actionUpdate($id)
     {
+        // Создаём экземпляры моделей
         $model = $this->findModel($id);
         $tr = new GoogleTranslate();
 
+        //Если POST запрос
         if ($this->request->isPost){
             $listPost = $this->request->post();
 
@@ -207,7 +209,7 @@ class AdminController extends Controller
 
             // Попытка сделать запрос на доабвление текста о пользователе в таблицу "user_information"
             try {
-
+                // Используя перебор записей в таблице Language
                 foreach (Language::find()->asArray()->all() as $lg){
                     try {
 
